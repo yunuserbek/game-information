@@ -67,5 +67,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
+    //Glide
+    implementation 'com.github.skydoves:landscapist-glide:2.0.0'
 
 }

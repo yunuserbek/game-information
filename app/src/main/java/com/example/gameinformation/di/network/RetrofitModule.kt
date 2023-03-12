@@ -7,33 +7,35 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.scopes.ViewModelScoped
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 
 @Module
-@InstallIn(ViewModelScoped::class)
+@InstallIn(SingletonComponent::class)
 object RetrofitModule {
 
     @Provides
-    @ViewModelScoped
+    @Singleton
     fun getInterceptor():Interceptor{
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
     }
     @Provides
-    @ViewModelScoped
+    @Singleton
     fun getHttpClient(interceptor: Interceptor):OkHttpClient{
         return  OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
     }
     @Provides
-    @ViewModelScoped
+    @Singleton
     fun provideRetrofitApi(client:OkHttpClient):GameService{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)

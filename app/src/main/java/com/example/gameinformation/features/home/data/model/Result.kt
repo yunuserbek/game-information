@@ -61,5 +61,5 @@ data class Result(
     @SerializedName("updated")
     val updated: String?,
     @SerializedName("user_game")
-    val userGame: Any?
+    val userGame: String?
 )
