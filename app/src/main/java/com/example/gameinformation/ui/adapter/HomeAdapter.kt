@@ -10,8 +10,7 @@ import com.example.gameinformation.databinding.HomeItemListBinding
 import com.example.gameinformation.features.home.domain.entity.GamesUi
 
 class HomeAdapter() : ListAdapter<GamesUi, HomeAdapter.GamesViewHolder>(DiffCallback) {
-
-
+    var onclick: (GamesUi) -> Unit = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesViewHolder {
         val binding =
             HomeItemListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -24,10 +23,14 @@ class HomeAdapter() : ListAdapter<GamesUi, HomeAdapter.GamesViewHolder>(DiffCall
 
     }
 
-    class GamesViewHolder(private val binding: HomeItemListBinding) :
+   inner class GamesViewHolder(private val binding: HomeItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GamesUi) {
             with(binding) {
+
+                binding.root.setOnClickListener {
+                    onclick(item)
+                }
 
                 binding.gameRatingText.text = item.rating.toString()
                 binding.gameReleasedText.text = item.released

@@ -7,6 +7,7 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface GameService {
-@GET("games")
-suspend fun games(@Query("key") key:String = TOKEN):GameResponse
+    @GET("games")
+    suspend fun games(@Query("key") key: String = TOKEN): GameResponse
 }
+

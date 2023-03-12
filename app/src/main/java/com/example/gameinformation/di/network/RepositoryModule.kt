@@ -1,5 +1,8 @@
 package com.example.gameinformation.di.network
 
+import com.example.gameinformation.features.detail.data.repository.DetailRepositoryImpl
+import com.example.gameinformation.features.detail.domain.repository.DetailRepository
+import com.example.gameinformation.features.detail.domain.source.GameDetailSource
 import com.example.gameinformation.features.home.data.repository.GetGamesRepositoryImpl
 import com.example.gameinformation.features.home.domain.repository.GetGamesRepository
 import com.example.gameinformation.features.home.domain.source.GamesDataSource
@@ -16,4 +19,7 @@ object RepositoryModule {
     @Singleton
     fun provideRepository(gamesDataSource: GamesDataSource):GetGamesRepository =GetGamesRepositoryImpl(gamesDataSource)
 
+    @Provides
+    @Singleton
+    fun provideDetailsRepository(gameDetailSource: GameDetailSource):DetailRepository =DetailRepositoryImpl(gameDetailSource)
 }

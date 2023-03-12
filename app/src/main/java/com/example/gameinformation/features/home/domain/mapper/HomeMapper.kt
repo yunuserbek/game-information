@@ -9,5 +9,6 @@ fun Result.ToGameMapper() = GamesUi(
     name = this.name ?: "",
     usergame = this.userGame ?: "",
     released = this.released?:"",
-    rating = this.rating ?: 0.0
+    rating = this.rating ?: 0.0,
+    idUse = this.id ?: -1
 )

@@ -1,12 +1,14 @@
 package com.example.gameinformation.di.network
 
+import com.example.gameinformation.features.detail.data.api.GameDetailService
+import com.example.gameinformation.features.detail.data.source.GameDetailSourceImpl
+import com.example.gameinformation.features.detail.domain.source.GameDetailSource
 import com.example.gameinformation.features.home.data.api.GameService
 import com.example.gameinformation.features.home.data.source.GamesDataSourceImpl
 import com.example.gameinformation.features.home.domain.source.GamesDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -15,5 +17,11 @@ import javax.inject.Singleton
 object DataSourceModule {
     @Provides
     @Singleton
-    fun provideREmoteDatasource(gameService: GameService):GamesDataSource = GamesDataSourceImpl(gameService)
+    fun provideRemoteDatasource(gameService: GameService): GamesDataSource =
+        GamesDataSourceImpl(gameService)
+
+    @Provides
+    @Singleton
+    fun provideRemoteDetailSource(gameDetailService: GameDetailService): GameDetailSource =
+        GameDetailSourceImpl(gameDetailService)
 }

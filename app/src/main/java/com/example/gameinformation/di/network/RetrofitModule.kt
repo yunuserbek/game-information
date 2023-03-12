@@ -1,12 +1,11 @@
 package com.example.gameinformation.di.network
 
-import com.example.gameinformation.BuildConfig
+import com.example.gameinformation.features.detail.data.api.GameDetailService
 import com.example.gameinformation.features.home.data.api.GameService
 import com.example.gameinformation.utilty.constants.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -27,21 +26,32 @@ object RetrofitModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
     }
+
     @Provides
     @Singleton
-    fun getHttpClient(interceptor: Interceptor):OkHttpClient{
-        return  OkHttpClient.Builder()
+    fun getHttpClient(interceptor: Interceptor): OkHttpClient {
+        return OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .build()
     }
+
     @Provides
     @Singleton
-    fun provideRetrofitApi(client:OkHttpClient):GameService{
+    fun provideRetrofitApi(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(GameService::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideHomeService(retrofit: Retrofit): GameService =
+        retrofit.create(GameService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideDetailService(retrofit: Retrofit): GameDetailService =
+        retrofit.create(GameDetailService::class.java)
 }
