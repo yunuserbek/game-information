@@ -54,7 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
         gamesAdapter.onclick={
-            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment()
+            val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.idUse!!)
             findNavController().navigate(action)
         }
     }

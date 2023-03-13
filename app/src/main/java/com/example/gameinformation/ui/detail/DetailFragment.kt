@@ -24,13 +24,13 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
     private val binding by viewBinding(FragmentDetailBinding::bind)
     private val viewModel by viewModels<DetailVM>()
     private var id:String?=null
-//    private val args by navArgs<DetailFragmentArgs>()
+   private val args by navArgs<DetailFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
 
-        viewModel.getDetail(3498)
+        viewModel.getDetail(args.id)
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             viewModel.detailState.collect{
                 when(it){
