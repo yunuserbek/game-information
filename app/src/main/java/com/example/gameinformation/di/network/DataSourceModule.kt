@@ -6,10 +6,14 @@ import com.example.gameinformation.features.detail.domain.source.GameDetailSourc
 import com.example.gameinformation.features.home.data.api.GameService
 import com.example.gameinformation.features.home.data.source.GamesDataSourceImpl
 import com.example.gameinformation.features.home.domain.source.GamesDataSource
+import com.example.gameinformation.features.stores.data.api.StoresService
+import com.example.gameinformation.features.stores.data.source.StoreDataSourceImpl
+import com.example.gameinformation.features.stores.domain.source.StoreDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.intellij.lang.annotations.PrintFormat
 import javax.inject.Singleton
 
 @Module
@@ -24,4 +28,11 @@ object DataSourceModule {
     @Singleton
     fun provideRemoteDetailSource(gameDetailService: GameDetailService): GameDetailSource =
         GameDetailSourceImpl(gameDetailService)
+
+    @Provides
+    @Singleton
+    fun provideRemoteStoreSource(storeService: StoresService): StoreDataSource =
+        StoreDataSourceImpl(storeService)
+
+
 }

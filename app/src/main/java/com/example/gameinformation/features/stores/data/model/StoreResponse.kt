@@ -11,5 +11,5 @@ data class StoreResponse(
     @SerializedName("previous")
     val previous: Any?,
     @SerializedName("results")
-    val results: List<Result?>?
+    val results: List<Result>?
 )

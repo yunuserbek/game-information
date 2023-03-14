@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.gameinformation.common.Resource
 import com.example.gameinformation.features.home.domain.entity.GamesUi
 import com.example.gameinformation.features.home.domain.usecase.GamesUseCase
+import com.example.gameinformation.features.stores.domain.entity.StoreUIModel
+import com.example.gameinformation.features.stores.domain.usecase.StoreUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,14 +15,19 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeVM @Inject constructor(
-    private val gamesUseCase: GamesUseCase
+    private val gamesUseCase: GamesUseCase,
+    private val storeUseCase: StoreUseCase
 ) : ViewModel() {
     private var _state = MutableStateFlow<List<GamesUi>>(emptyList())
-    val homestate = _state.asStateFlow()
+    val gameState = _state.asStateFlow()
+    private var _store = MutableStateFlow<List<StoreUIModel>>(emptyList())
+    val storeState = _store.asStateFlow()
 
     init {
         getGames()
+        getStore()
     }
+
 
     private fun getGames() = viewModelScope.launch {
         gamesUseCase().collect { result ->
@@ -37,6 +44,23 @@ class HomeVM @Inject constructor(
                 }
             }
 
+
+        }
+
+    }
+
+    private fun getStore() = viewModelScope.launch {
+        storeUseCase().collect{result->
+            when(result){
+                is Resource.Loading -> {
+                }
+                is Resource.Success -> {
+                    _store.value = result.data
+            }
+                is Resource.Error -> {
+
+                }
+            }
 
         }
 

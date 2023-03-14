@@ -2,6 +2,7 @@ package com.example.gameinformation.di.network
 
 import com.example.gameinformation.features.detail.data.api.GameDetailService
 import com.example.gameinformation.features.home.data.api.GameService
+import com.example.gameinformation.features.stores.data.api.StoresService
 import com.example.gameinformation.utilty.constants.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -54,4 +55,10 @@ object RetrofitModule {
     @Provides
     fun provideDetailService(retrofit: Retrofit): GameDetailService =
         retrofit.create(GameDetailService::class.java)
+
+
+    @Singleton
+    @Provides
+    fun provideStoreService(retrofit:Retrofit):StoresService=
+        retrofit.create(StoresService::class.java)
 }

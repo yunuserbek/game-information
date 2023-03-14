@@ -7,7 +7,7 @@ data class Result(
     @SerializedName("domain")
     val domain: String?,
     @SerializedName("games")
-    val games: List<Game?>?,
+    val games: List<Game>?,
     @SerializedName("games_count")
     val gamesCount: Int?,
     @SerializedName("id")
