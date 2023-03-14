@@ -2,6 +2,7 @@ package com.example.gameinformation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -32,12 +33,13 @@ class HomeAdapter() : ListAdapter<GamesUi, HomeAdapter.GamesViewHolder>(DiffCall
                     onclick(item)
                 }
 
-                binding.gameRatingText.text = item.rating.toString()
-                binding.gameReleasedText.text = item.released
-                binding.gameTitle.text = item.name
                 Glide.with(binding.root.context)
                     .load(item.image)
-                    .into(binding.gameImage)
+                    .into(binding.iv)
+
+
+
+
 
 
             }
@@ -46,9 +48,7 @@ class HomeAdapter() : ListAdapter<GamesUi, HomeAdapter.GamesViewHolder>(DiffCall
 
     }
 
-    override fun getItemCount(): Int {
-        return currentList.size
-    }
+
 
     companion object DiffCallback : DiffUtil.ItemCallback<GamesUi>() {
 

@@ -1,25 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+        >
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/detailImageView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/image"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:scaleType="fitXY"
+        android:layout_weight="0.6"
+        tools:background="@color/black" />
 
-    <TextView
-        android:id="@+id/textid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/image"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="ss"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/detailProgressBar"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        tools:background="#91A8A6">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/gameNameText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/teal_700"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                tools:text="Game Name"
+                android:layout_margin="5dp"/>
+
+            <TextView
+                android:id="@+id/gameDescriptionText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="18sp"
+                tools:text="Game Description Lorem ıpisaa a adsasfdsf sddfsdfgdsf fgdfs dfsdfsdfsd sdfsd f" />
+
+
+
+
+
+
+            <TextView
+                android:id="@+id/releasedText"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                tools:text="Rating Number:" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

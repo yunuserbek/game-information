@@ -15,17 +15,31 @@ import javax.inject.Inject
 class HomeVM @Inject constructor(
     private val gamesUseCase: GamesUseCase
 ) : ViewModel() {
-    private var _state = MutableStateFlow<Resource<List<GamesUi>>>(Resource.Loading)
-    val state = _state.asStateFlow()
+    private var _state = MutableStateFlow<List<GamesUi>>(emptyList())
+    val homestate = _state.asStateFlow()
 
     init {
         getGames()
     }
 
     private fun getGames() = viewModelScope.launch {
-        gamesUseCase().collect {
+        gamesUseCase().collect { result ->
+            when (result) {
+                is Resource.Loading -> {
+                }
+                is Resource.Success -> {
+                    _state.value = result.data
 
-            _state.value =it
+
+                }
+                is Resource.Error -> {
+
+                }
+            }
+
+
         }
+
     }
 }
+

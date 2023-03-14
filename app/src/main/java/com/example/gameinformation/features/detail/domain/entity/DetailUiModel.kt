@@ -7,4 +7,5 @@ data class DetailUiModel (
     val description: String?,
     val rating: Double?,
     val date: String?,
+    val header: String?
         )

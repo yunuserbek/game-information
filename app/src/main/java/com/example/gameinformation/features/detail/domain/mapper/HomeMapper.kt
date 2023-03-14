@@ -7,6 +7,7 @@ fun DetailResponse.toDetailMapper() = DetailUiModel(
     backgroundİmage = backgroundİmage?:"",
     description = description?:"",
     rating = rating?:0.0,
-    date = released?: ""
+    date = released?: "",
+    header =name?:""
 
 )
