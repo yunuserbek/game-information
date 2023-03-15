@@ -38,6 +38,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.idUse!!)
             findNavController().navigate(action)
         }
+        storeAdapter.onclickstore={
+            val action = HomeFragmentDirections.actionHomeFragmentToStoresDetailFragment(it.id!!)
+            findNavController().navigate(action)
+        }
     }
 
     private fun getData() = viewLifecycleOwner.lifecycleScope.launch {

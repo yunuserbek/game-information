@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.flow
 class StoreRepositoryImpl(private var storeDataSource: StoreDataSource) : StoreRepository {
     override suspend fun getStores(): Flow<Resource<List<StoreUIModel>>> = flow {
         emit(Resource.Loading)
+
         try {
             val stores =storeDataSource.getStores().results?.map { it.toStoreMapper() }
             stores?.let {

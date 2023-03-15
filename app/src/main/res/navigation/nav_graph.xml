@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_storesDetailFragment"
+            app:destination="@id/storesDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -26,5 +29,13 @@
             android:name="id"
             app:argType="integer" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/storesDetailFragment"
+        android:name="com.example.gameinformation.ui.storedetail.StoresDetailFragment"
+        android:label="StoresDetailFragment" >
+        <argument
+            android:name="storeid"
+            app:argType="integer" />
     </fragment>
 </navigation>
