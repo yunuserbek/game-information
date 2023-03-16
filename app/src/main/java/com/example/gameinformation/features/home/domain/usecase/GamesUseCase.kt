@@ -4,5 +4,5 @@ import com.example.gameinformation.features.home.domain.repository.GetGamesRepos
 import javax.inject.Inject
 
 class GamesUseCase @Inject constructor(private val getGamesRepository: GetGamesRepository) {
-    suspend operator fun invoke() = getGamesRepository.getGames()
+    suspend operator fun invoke(size:Int) = getGamesRepository.getGames(size)
 }

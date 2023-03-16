@@ -2,6 +2,8 @@ package com.example.gameinformation.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.example.gameinformation.common.Resource
 import com.example.gameinformation.features.home.domain.entity.GamesUi
 import com.example.gameinformation.features.home.domain.usecase.GamesUseCase
@@ -18,7 +20,7 @@ class HomeVM @Inject constructor(
     private val gamesUseCase: GamesUseCase,
     private val storeUseCase: StoreUseCase
 ) : ViewModel() {
-    private var _state = MutableStateFlow<List<GamesUi>>(emptyList())
+    private var _state = MutableStateFlow<PagingData<GamesUi>>(PagingData.empty())
     val gameState = _state.asStateFlow()
     private var _store = MutableStateFlow<List<StoreUIModel>>(emptyList())
     val storeState = _store.asStateFlow()
@@ -30,19 +32,12 @@ class HomeVM @Inject constructor(
 
 
     private fun getGames() = viewModelScope.launch {
-        gamesUseCase().collect { result ->
-            when (result) {
-                is Resource.Loading -> {
-                }
-                is Resource.Success -> {
-                    _state.value = result.data
+        gamesUseCase(10).cachedIn(viewModelScope).collect { result ->
+
+            _state.value = result
 
 
-                }
-                is Resource.Error -> {
 
-                }
-            }
 
 
         }

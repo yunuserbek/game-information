@@ -3,6 +3,7 @@ package com.example.gameinformation.ui.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.gameinformation.databinding.HomeItemListBinding
 import com.example.gameinformation.features.home.domain.entity.GamesUi
 
-class HomeAdapter() : ListAdapter<GamesUi, HomeAdapter.GamesViewHolder>(DiffCallback) {
+class HomeAdapter() : PagingDataAdapter<GamesUi, HomeAdapter.GamesViewHolder>(DiffCallback) {
     var onclick: (GamesUi) -> Unit = {}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GamesViewHolder {
         val binding =
@@ -20,7 +21,7 @@ class HomeAdapter() : ListAdapter<GamesUi, HomeAdapter.GamesViewHolder>(DiffCall
 
     override fun onBindViewHolder(holder: GamesViewHolder, position: Int) {
 
-        holder.bind(getItem(position))
+        getItem(position)?.let { holder.bind(it) }
 
     }
 

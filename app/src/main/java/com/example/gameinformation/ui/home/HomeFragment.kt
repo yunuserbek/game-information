@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.gameinformation.R
+import com.example.gameinformation.collectInResumed
 import com.example.gameinformation.common.delegation.viewBinding
 import com.example.gameinformation.databinding.FragmentHomeBinding
 import com.example.gameinformation.ui.adapter.HomeAdapter
@@ -45,9 +46,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun getData() = viewLifecycleOwner.lifecycleScope.launch {
-        viewModel.gameState.collect {
+
+        viewModel.gameState.collectInResumed(viewLifecycleOwner) {
             binding.gameRv.adapter = gamesAdapter
-            gamesAdapter.submitList(it)
+            gamesAdapter.submitData(lifecycle,it)
 
         }
 
