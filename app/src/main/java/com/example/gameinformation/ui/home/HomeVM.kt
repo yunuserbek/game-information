@@ -32,7 +32,8 @@ class HomeVM @Inject constructor(
 
 
     private fun getGames() = viewModelScope.launch {
-        gamesUseCase(10).cachedIn(viewModelScope).collect { result ->
+        gamesUseCase(5).cachedIn(viewModelScope).collect { result ->
+
 
             _state.value = result
 
