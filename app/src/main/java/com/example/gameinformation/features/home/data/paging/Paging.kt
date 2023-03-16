@@ -22,13 +22,15 @@ class Paging (  private val remoteDataSource: GamesDataSource,
         return try {
             val currentPage = params.key ?: 1
             val response = remoteDataSource.getGames(size,currentPage)
+            val prevKey = if (currentPage == 1) null else currentPage - 1
 
-            val nextPageNumber = checkNextOrPrevPage(response.next)
-            val prevPageNumber = checkNextOrPrevPage(response.previous)
+           // val nextPageNumber = checkNextOrPrevPage(response.next)
+         //   val prevPageNumber = checkNextOrPrevPage(response.previous)
             LoadResult.Page(
-                data = response.results?.map { it.ToGameMapper() } ?: emptyList(),
-                prevKey =prevPageNumber,
-                nextKey = nextPageNumber
+
+                data = response.results.map { it.ToGameMapper() } ?: emptyList(),
+                prevKey =prevKey,
+                nextKey = currentPage +1
             )
         }catch (e: Exception) {
             LoadResult.Error(e)
