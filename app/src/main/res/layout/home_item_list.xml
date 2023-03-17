@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="296dp"
-    android:layout_height="176dp"
-    android:layout_marginEnd="16dp"
-    app:cardCornerRadius="12dp">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="185dp"
+    android:layout_height="250dp"
+    android:layout_marginEnd="10dp"
+    app:cardBackgroundColor="#252121"
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp"
+    app:strokeColor="#C8C4C4"
+    app:strokeWidth="3dp"
+    android:layout_marginStart="10dp"
+    app:layout_goneMarginEnd="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
 
-    <LinearLayout
-        android:id="@+id/container"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
 
         <ImageView
-            android:id="@+id/iv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:id="@+id/imageViewGame"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/poppins_bold"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/reportContent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:scaleType="centerCrop"
-            />
+            tools:text="game" />
 
-        <!--        <com.basefy.ytu.widget.base.TextView-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="200dp"-->
-        <!--            android:layout_marginTop="150dp"-->
-        <!--            android:text="merhaba"-->
-        <!--            android:textColor="#131212"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:id="@+id/advertsid"/>-->
-    </LinearLayout>
+        <TextView
+            android:id="@+id/reportContent"
+            android:layout_width="173dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:maxLength="80"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/imageViewGame"
+
+            tools:text="Contrary to popul" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

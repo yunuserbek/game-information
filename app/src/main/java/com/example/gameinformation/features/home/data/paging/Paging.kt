@@ -25,7 +25,7 @@ class Paging (  private val remoteDataSource: GamesDataSource,
             val prevKey = if (currentPage == 1) null else currentPage - 1
 
            // val nextPageNumber = checkNextOrPrevPage(response.next)
-         //   val prevPageNumber = checkNextOrPrevPage(response.previous)
+            //val prevPageNumber = checkNextOrPrevPage(response.previous)
             LoadResult.Page(
 
                 data = response.results.map { it.ToGameMapper() } ?: emptyList(),

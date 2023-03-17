@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gameinformation.R
+import com.example.gameinformation.common.extension.glideImage
 import com.example.gameinformation.databinding.HomeItemListBinding
 import com.example.gameinformation.features.home.domain.entity.GamesUi
 
@@ -35,10 +36,8 @@ class HomeAdapter() : PagingDataAdapter<GamesUi, HomeAdapter.GamesViewHolder>(Di
                     onclick(item)
                 }
 
-                Glide.with(binding.root.context)
-                    .load(item.image)
-                    .placeholder(R.drawable.ic_launcher_background)
-                    .into(binding.iv)
+              binding.imageViewGame.glideImage(item.image)
+                binding.reportContent.text= item.name
 
 
 

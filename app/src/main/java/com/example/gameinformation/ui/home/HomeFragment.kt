@@ -30,7 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         collectData()
         getData()
-        getStoreData()
+        //getStoreData()
 
     }
 
@@ -59,7 +59,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         viewModel.storeState.collect {
             storeAdapter.updateList(it)
-            binding.storeRV.adapter= storeAdapter
+            binding.gameRv.adapter= storeAdapter
         }
     }
 

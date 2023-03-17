@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
                 android:minHeight="270dp"
-
+                android:scaleType="centerCrop"
                 android:layout_marginHorizontal="10dp"
                 android:src="#E4D4D4"
                 android:visibility="visible"
@@ -81,7 +81,7 @@
                 android:layout_margin="16dp"
                 android:fontFamily="@font/poppins_regular"
                 android:gravity="start"
-                android:text="açıklama"
+                tools:text="açıklama"
                 android:textColor="#201F1F"
                 android:textSize="17sp"
                 app:layout_constraintLeft_toLeftOf="parent"

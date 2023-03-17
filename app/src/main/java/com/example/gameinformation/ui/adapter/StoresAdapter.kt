@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.gameinformation.common.extension.glideImage
 import com.example.gameinformation.databinding.StoreItemListBinding
 import com.example.gameinformation.features.stores.domain.entity.StoreUIModel
 
@@ -33,7 +34,7 @@ class StoresAdapter : RecyclerView.Adapter<StoresAdapter.StoresViewHolder>() {
             binding.root.setOnClickListener {
                 onclickstore(storeUIModel)
             }
-            Glide.with(itemView.context).load(storeUIModel.imageBackground).into(imagestore)
+            binding.imagestore.glideImage(storeUIModel.imageBackground)
         }
 
 

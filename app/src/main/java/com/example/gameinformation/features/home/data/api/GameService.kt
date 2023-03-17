@@ -12,5 +12,7 @@ interface GameService {
         @Query("page") page: Int,
         @Query("page_size") page_size: Int,
     ): GamesResponse
+
+
 }
 
