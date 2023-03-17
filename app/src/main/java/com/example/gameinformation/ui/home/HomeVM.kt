@@ -25,6 +25,9 @@ class HomeVM @Inject constructor(
     private var _store = MutableStateFlow<List<StoreUIModel>>(emptyList())
     val storeState = _store.asStateFlow()
 
+    private var _searchGame = MutableStateFlow<PagingData<GamesUi>>(PagingData.empty())
+    var searchGame = _searchGame.asStateFlow()
+
     init {
         getGames()
         getStore()
@@ -32,7 +35,7 @@ class HomeVM @Inject constructor(
 
 
     private fun getGames() = viewModelScope.launch {
-        gamesUseCase(20).cachedIn(viewModelScope).collect { result ->
+        gamesUseCase(20,"").cachedIn(viewModelScope).collect { result ->
 
 
             _state.value = result
@@ -44,6 +47,20 @@ class HomeVM @Inject constructor(
         }
 
     }
+     fun searchGame(query:String) = viewModelScope.launch {
+        gamesUseCase(20,query).cachedIn(viewModelScope).collect { result ->
+
+
+            _searchGame.value = result
+
+
+
+
+
+        }
+
+    }
+
 
     private fun getStore() = viewModelScope.launch {
         storeUseCase().collect{result->

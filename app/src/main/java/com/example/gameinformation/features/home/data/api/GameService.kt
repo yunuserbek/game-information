@@ -11,7 +11,16 @@ interface GameService {
         @Query("key") key: String = TOKEN,
         @Query("page") page: Int,
         @Query("page_size") page_size: Int,
+        @Query("search") query: String?= null,
     ): GamesResponse
+
+//@GET("games")
+//    suspend fun searchGames(
+//        @Query("key") key: String = TOKEN,
+//        @Query("page") page: Int,
+//        @Query("page_size") page_size: Int,
+//        @Query("search") query: String,
+//    ): GamesResponse
 
 
 }

@@ -27,12 +27,12 @@ class GetGamesRepositoryImpl(private val gameDataSource: GamesDataSource) : GetG
 //        }
 //
 //    }
-    override suspend fun getGames(size: Int): Flow<PagingData<GamesUi>>  = flow{
+    override suspend fun getGames(size: Int,search:String): Flow<PagingData<GamesUi>>  = flow{
 
         Pager(config = PagingConfig(size, maxSize = 100, enablePlaceholders =false ),
             pagingSourceFactory = {
                 Paging(
-                    remoteDataSource = gameDataSource, size
+                    remoteDataSource = gameDataSource, size,search
                 )
             }).flow.collect {
 

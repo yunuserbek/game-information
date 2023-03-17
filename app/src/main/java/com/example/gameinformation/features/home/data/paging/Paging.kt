@@ -8,7 +8,9 @@ import com.example.gameinformation.features.home.domain.mapper.ToGameMapper
 import com.example.gameinformation.features.home.domain.source.GamesDataSource
 
 class Paging (  private val remoteDataSource: GamesDataSource,
-                private val size:Int)
+                private val size:Int,
+                private val search: String?
+)
     : PagingSource<Int, GamesUi>(){
     override fun getRefreshKey(state: PagingState<Int, GamesUi>): Int? {
 
@@ -20,12 +22,17 @@ class Paging (  private val remoteDataSource: GamesDataSource,
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GamesUi> {
         return try {
+
+
             val currentPage = params.key ?: 1
-            val response = remoteDataSource.getGames(size,currentPage)
+            val response = remoteDataSource.getGames(size,currentPage, query = search?:"")
             val prevKey = if (currentPage == 1) null else currentPage - 1
+
+
 
            // val nextPageNumber = checkNextOrPrevPage(response.next)
             //val prevPageNumber = checkNextOrPrevPage(response.previous)
+
             LoadResult.Page(
 
                 data = response.results.map { it.ToGameMapper() } ?: emptyList(),
