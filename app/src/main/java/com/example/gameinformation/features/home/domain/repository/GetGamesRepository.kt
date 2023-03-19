@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface GetGamesRepository {
 
-    suspend fun getGames(size:Int,search:String): Flow<PagingData<GamesUi>>
+    suspend fun getGames(size:Int): Flow<PagingData<GamesUi>>
+
+    suspend fun getSearchGames(size:Int,query:String): Flow<PagingData<GamesUi>>
 
 }

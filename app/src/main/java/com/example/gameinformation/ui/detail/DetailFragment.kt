@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.gameinformation.R
@@ -25,8 +26,9 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onViewCreated(view, savedInstanceState)
 
 
+
         viewModel.getDetail(args.id)
-        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+        viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.detailState.collect{
                 when(it){
                     is Resource.Loading ->{
@@ -44,6 +46,7 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
                     }
                     is Resource.Error ->{
                     }
+
                 }
             }
 

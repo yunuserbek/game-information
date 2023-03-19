@@ -5,8 +5,12 @@ import com.example.gameinformation.features.home.data.model.GamesResponse
 import com.example.gameinformation.features.home.domain.source.GamesDataSource
 
 class GamesDataSourceImpl (private val remoteService: GameService): GamesDataSource {
-    override suspend fun getGames(size:Int,page:Int,query:String): GamesResponse {
-        return remoteService.games(page_size = size,page =page,query = query)
+    override suspend fun getGames(size:Int,page:Int): GamesResponse {
+        return remoteService.games(page_size = size,page = page)
+    }
+
+    override suspend fun getSearchGames(size: Int, page: Int, query: String): GamesResponse {
+        return remoteService.searchGames(page_size = size,page = page,query = query)
     }
 
 

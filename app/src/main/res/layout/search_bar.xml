@@ -4,7 +4,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#75B7C3">
+    android:background="#E1E7E8">
 
     <TextView
         android:id="@+id/tvAppName"
