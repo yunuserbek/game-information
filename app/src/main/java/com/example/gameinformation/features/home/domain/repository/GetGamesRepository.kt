@@ -11,4 +11,6 @@ interface GetGamesRepository {
 
     suspend fun getSearchGames(size:Int,query:String): Flow<PagingData<GamesUi>>
 
+    fun getLastSearchedWords(): Flow<List<String>>
+
 }

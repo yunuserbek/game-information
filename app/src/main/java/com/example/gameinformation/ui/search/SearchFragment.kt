@@ -27,10 +27,9 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        searchQueryListen()
         getLastData()
-        lastWordClick()
+        searchQueryListen()
+
     }
      private fun searchQueryListen() {
 
@@ -45,20 +44,20 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
              }
          })
      }
-   fun getLastData() = viewLifecycleOwner.lifecycleScope.launch {
+    fun getLastData() = viewLifecycleOwner.lifecycleScope.launch {
 
-       viewModel.lastSearchedWordsState.collect {
-           lastAdapter.lastList(it)
-           binding.lastRv.adapter = lastAdapter
-       }
-   }
+        viewModel.lastSearchedWordsState.collect {
+            lastAdapter.lastList(it)
+            binding.lastRv.adapter = lastAdapter
+        }
+    }
     private fun searchGames(query: String) {
-        //viewModel.searchGame(query)
+        viewModel.searchGame(query)
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.searchGame.collect { state ->
                     state?.let {
-                        binding.searchRv.adapter =gamesAdapter
+                        binding.searchRv.adapter = gamesAdapter
                         gamesAdapter.submitData(state)
 
                     }
@@ -67,11 +66,5 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         }
 
     }
-    fun lastWordClick(){
-     lastAdapter.onWordClick ={
-         searchGames(it)
-
-     }
- }
 
 }

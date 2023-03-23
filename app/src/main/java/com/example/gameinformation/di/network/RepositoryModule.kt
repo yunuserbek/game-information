@@ -1,5 +1,6 @@
 package com.example.gameinformation.di.network
 
+import android.content.Context
 import com.example.gameinformation.features.homedetail.data.repository.DetailRepositoryImpl
 import com.example.gameinformation.features.homedetail.domain.repository.DetailRepository
 import com.example.gameinformation.features.homedetail.domain.source.GameDetailSource
@@ -15,6 +16,7 @@ import com.example.gameinformation.features.storesdetail.domain.source.StoreDeta
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -23,7 +25,7 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Provides
     @Singleton
-    fun provideRepository(gamesDataSource: GamesDataSource):GetGamesRepository =GetGamesRepositoryImpl(gamesDataSource)
+    fun provideRepository(gamesDataSource: GamesDataSource,@ApplicationContext context : Context):GetGamesRepository =GetGamesRepositoryImpl(gamesDataSource, context )
 
     @Provides
     @Singleton
