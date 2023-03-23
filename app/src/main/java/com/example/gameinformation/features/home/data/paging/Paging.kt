@@ -11,8 +11,10 @@ class Paging (private val remoteDataSource: GamesDataSource,
                 private val size:Int)
     : PagingSource<Int, GamesUi>(){
     override fun getRefreshKey(state: PagingState<Int, GamesUi>): Int? {
-
-        return null
+        return state.anchorPosition?.let {
+            val anchorPage = state.closestPageToPosition(it)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GamesUi> {
@@ -31,7 +33,7 @@ class Paging (private val remoteDataSource: GamesDataSource,
 
                 data = response.results.map { it.ToGameMapper() } ?: emptyList(),
                 prevKey =if (currentPage == 1) null else -1,
-                nextKey = response.results.lastOrNull()?.id?.plus(1)
+                nextKey = currentPage +1
             )
         }catch (e: Exception) {
             LoadResult.Error(e)

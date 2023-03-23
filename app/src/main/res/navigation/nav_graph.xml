@@ -16,6 +16,7 @@
         <action
             android:id="@+id/action_homeFragment_to_storesDetailFragment"
             app:destination="@id/storesDetailFragment" />
+        <argument android:name="query" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -34,5 +35,14 @@
         <argument
             android:name="storeid"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.gameinformation.ui.search.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

@@ -15,6 +15,7 @@ import com.example.gameinformation.R
 import com.example.gameinformation.collectInResumed
 import com.example.gameinformation.common.delegation.viewBinding
 import com.example.gameinformation.databinding.FragmentHomeBinding
+import com.example.gameinformation.databinding.FragmentSearchBinding
 import com.example.gameinformation.databinding.SearchBarBinding
 import com.example.gameinformation.ui.adapter.HomeAdapter
 import com.example.gameinformation.ui.adapter.StoresAdapter
@@ -22,8 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeBinding
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
 
 
@@ -32,39 +32,31 @@ class HomeFragment : Fragment() {
     private val viewModel by viewModels<HomeVM>()
     private val gamesAdapter by lazy { HomeAdapter() }
     private val storeAdapter by lazy { StoresAdapter() }
-    private lateinit var toolbarBinding: SearchBarBinding
+    private val binding by viewBinding(FragmentHomeBinding::bind)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentHomeBinding.inflate(layoutInflater)
-        toolbarBinding = SearchBarBinding.bind(binding.root)
-        return binding.root
-    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         collectData()
         getData()
         //getStoreData()
-        searchQueryListen()
+     //   searchQueryListen()
 
     }
 
-    private fun searchQueryListen() {
-
-        toolbarBinding.svSearchGame.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                searchGames(query)
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                return false
-            }
-        })
-    }
+//    private fun searchQueryListen() {
+//
+//        binding.svSearchGame.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//                searchGames(query)
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                return false
+//            }
+//        })
+//    }
     fun collectData(){
         gamesAdapter.onclick={
             val action = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.idUse!!)
