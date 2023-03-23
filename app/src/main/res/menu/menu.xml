@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/searchFragment"
+        android:title="search"
+        android:icon="@drawable/ic_search"/>
+    <item
+        android:id="@+id/homeFragment"
+        android:title="home"
+        android:icon="@drawable/baseline_home_24"/>
+</menu>
