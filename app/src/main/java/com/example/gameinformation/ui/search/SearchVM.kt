@@ -25,17 +25,17 @@ class SearchVM @Inject constructor(
     var lastSearchedWordsState = _lastSearchedWords.asStateFlow()
 
     init {
-        //astSearchedWords()
+        lastSearchedWords()
 
 
     }
 
-//    fun lastSearchedWords() = viewModelScope.launch {
-//        lastSearchedWordsUseCase().collect { result ->
-//            _lastSearchedWords.value = result
-//
-//        }
-//    }
+    fun lastSearchedWords() = viewModelScope.launch {
+        lastSearchedWordsUseCase().collect { result ->
+            _lastSearchedWords.value = result
+
+        }
+    }
     fun searchGame(query:String) = viewModelScope.launch {
     searchUseCase(20, query).cachedIn(viewModelScope).collect { result ->
         _searchGame.value = result
