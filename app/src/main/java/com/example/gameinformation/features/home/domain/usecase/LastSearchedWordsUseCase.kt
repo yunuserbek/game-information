@@ -6,5 +6,5 @@ import javax.inject.Inject
 class LastSearchedWordsUseCase @Inject constructor(
     private val wordsRepository: GetGamesRepository
 ) {
-  //  operator fun invoke() = wordsRepository.getLastSearchedWords()
+  operator fun invoke() = wordsRepository.getLastSearchedWords()
 }
