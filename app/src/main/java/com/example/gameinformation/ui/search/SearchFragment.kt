@@ -7,10 +7,12 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.gameinformation.R
 import androidx.appcompat.widget.SearchView
+import androidx.navigation.fragment.findNavController
 import com.example.gameinformation.common.delegation.viewBinding
 import com.example.gameinformation.databinding.FragmentSearchBinding
 import com.example.gameinformation.ui.adapter.HomeAdapter
 import com.example.gameinformation.ui.adapter.LastSearchedAdapter
+import com.example.gameinformation.ui.home.HomeFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -55,7 +57,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
     }
     private fun searchGames(query: String) {
         viewModel.searchGame(query)
-        viewLifecycleOwner.lifecycleScope.launch {
+
             viewLifecycleOwner.lifecycleScope.launch {
                 viewModel.searchGame.collect { state ->
                     state?.let {
@@ -65,14 +67,21 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                     }
                 }
             }
+        gamesAdapter.onclick={
+            val action = SearchFragmentDirections.actionSearchFragmentToStoresDetailFragment(it.idUse?:0)
+            findNavController().navigate(action)
+        }
         }
 
-    }
+
+
+
     fun lastWordClick(){
      lastAdapter.onWordClick ={
          searchGames(it)
 
      }
  }
+
 
 }
