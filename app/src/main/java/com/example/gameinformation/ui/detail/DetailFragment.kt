@@ -2,11 +2,9 @@ package com.example.gameinformation.ui.detail
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.gameinformation.R
@@ -26,8 +24,10 @@ class DetailFragment : Fragment(R.layout.fragment_detail) {
         super.onViewCreated(view, savedInstanceState)
 
 
+args.id.let {id->
+    viewModel.getDetail(id)
+}
 
-        viewModel.getDetail(args.id)
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.detailState.collect{
                 when(it){
