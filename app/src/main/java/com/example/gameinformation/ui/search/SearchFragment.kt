@@ -67,10 +67,6 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                     }
                 }
             }
-        gamesAdapter.onclick={
-            val action = SearchFragmentDirections.actionSearchFragmentToStoresDetailFragment(it.idUse?:0)
-            findNavController().navigate(action)
-        }
         }
 
 
